@@ -2,21 +2,21 @@
 <PropertyList>
  <sim>
 
-  <description>Boeing KC135</description>
-  <author>Innis Cunningham</author>
+  <description>Boeing KC135-E</description>
+  <author type="string">Innis Cunningham, modified by Vivian Meazza</author>
   <status>alpha</status>
 
   <flight-model>jsb</flight-model>
-  <aero>KC135</aero>
+  <aero>KC135-E</aero>
   <virtual-cockpit archive="y">true</virtual-cockpit> 
   <systems>
-   <!--
-   <autopilot>
-    <path>Aircraft/737/systems/737-autopilot.xml</path>
-   </autopilot>
-   -->
+   
+<!--   <autopilot>
+    <path>Aircraft/KC135/Systems/autopilot.xml</path>
+   </autopilot>-->
+   
    <electrical>
-    <path>Aircraft/Generic/generic-electrical.xml</path>
+    <path>Aircraft/KC135/Systems/electrical.xml</path>
    </electrical>
   </systems> 
   
@@ -26,7 +26,7 @@
   </sound>
 
   <panel>
-   <path>Aircraft/737-300/Panels/737-ifr-panel.xml</path>
+   <path>Aircraft/KC135/Panels/737-ifr-panel.xml</path>
    <visibility>true</visibility>
   </panel>
   
@@ -34,10 +34,7 @@
    <path>Aircraft/KC135/Models/KC135.xml</path>
   </model>
    
-  
-
- 
-	<view>
+  <view>
    <internal archive="y">true</internal>
    <config>
      <!-- x/y/z == right/up/back -->
@@ -60,11 +57,6 @@
   <ATC>
    <enabled type="bool">false</enabled>
   </ATC>
-
-  <!-- turns off GA traffic -->
-  <ai-traffic>
-   <enabled type="bool">false</enabled>
-  </ai-traffic>
 
   <flaps>
    <setting>0.000</setting>
@@ -100,6 +92,31 @@
     <switch-position>1</switch-position>
   </dme>
  </radios>
+ 
+ <instrumentation>
+ <radar>
+  <range type="int" archive="y">40</range>
+  <minimized type="bool" archive="y">false</minimized>
+  <switch archive="y">ON</switch>
+  <serviceable type="bool">true</serviceable>
+ </radar>
+</instrumentation>
+<!--3500.0-->
+<autopilot>
+   <config>
+     <min-climb-speed-kt type="float">150.0</min-climb-speed-kt>
+     <best-climb-speed-kt type="float">300.0</best-climb-speed-kt>
+     <target-climb-rate-fpm type="float">2000.0</target-climb-rate-fpm>
+     <target-descent-rate-fpm type="float">1500.0</target-descent-rate-fpm>
+     <elevator-adj-factor type="float">3500</elevator-adj-factor>
+     <integral-contribution type="float">0.001</integral-contribution>
+     <zero-pitch-throttle type="float">0.0001</zero-pitch-throttle>
+     <zero-pitch-trim-full-throttle type="float">0.0001</zero-pitch-trim-full-throttle>
+     <max-roll-deg type="float">30</max-roll-deg>
+     <max-aileron type="float">1.0</max-aileron>
+   </config>
+ </autopilot>
+
 
 
 <!--
@@ -123,5 +140,11 @@
    <display-mach type="bool">false</display-mach>
   </autoflight>
  </controls>
+ 
+ <nasal>
+    <aar> 
+        <file>Aircraft/KC135/aar.nas</file>
+    </aar>
+  </nasal>
 
 </PropertyList>
