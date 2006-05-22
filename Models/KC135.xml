@@ -636,7 +636,7 @@
  <animation>
   <type>rotate</type>
   <object-name>lhibail</object-name>
-  <property>controls/flight/aileron</property>
+  <property>surface-positions/left-aileron-pos-norm</property>
   <factor>30</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -654,7 +654,7 @@
  <animation>
   <type>rotate</type>
   <object-name>lhobail</object-name>
-  <property>controls/flight/aileron</property>
+  <property>surface-positions/left-aileron-pos-norm</property>
   <factor>30</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -672,7 +672,7 @@
  <animation>
   <type>rotate</type>
   <object-name>rhibail</object-name>
-  <property>controls/flight/aileron</property>
+  <property>surface-positions/right-aileron-pos-norm</property>
   <factor>-30</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -690,7 +690,7 @@
  <animation>
   <type>rotate</type>
   <object-name>rhobail</object-name>
-  <property>controls/flight/aileron</property>
+  <property>surface-positions/right-aileron-pos-norm</property>
   <factor>-30</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -708,7 +708,7 @@
  <animation>
   <type>rotate</type>
   <object-name>lhelevator</object-name>
-  <property>controls/flight/elevator</property>
+  <property>surface-positions/elevator-pos-norm</property>
   <factor>15</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -726,7 +726,7 @@
  <animation>
   <type>rotate</type>
   <object-name>rhelevator</object-name>
-  <property>controls/flight/elevator</property>
+  <property>surface-positions/elevator-pos-norm</property>
   <factor>15</factor>
   <offset-deg>0</offset-deg>   
   <center>
@@ -744,7 +744,7 @@
  <animation>
   <type>rotate</type>
   <object-name>rudder</object-name>
-  <property>controls/flight/rudder</property>
+  <property>surface-positions/rudder-pos-norm</property>
   <factor>22.5</factor>
   <offset-deg>0</offset-deg>   
   <center>
