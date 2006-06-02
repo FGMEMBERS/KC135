@@ -41,7 +41,7 @@ override those by providing <w>..</w> and <h>..</h> properties with the
 
   <instruments>
     
-    <instrument include="../Instruments/pfd1-alt.xml">
+    <instrument include="../Instruments/EHSI.xml">
       <name>radar</name>
       <condition>
         <equals>
