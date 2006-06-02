@@ -18,7 +18,7 @@ _______________________________________________________________________________
     <layer>
      <name>background</name>
      <texture>   
-     <path>Aircraft/737-300/Instruments/Textures/737-engines.rgb</path>
+     <path>Aircraft/KC135/Instruments/Textures/737-engines.rgb</path>
      <x1>0.0</x1>
      <y1>0.0</y1>
      <x2>1.0</x2>

@@ -1,20 +1,205 @@
 <PropertyList>
- <name>DU panel</name>
- <w-base>256</w-base>
- <h-base>256</h-base>
- <layers>
+  <name>DU panel</name>
+  <w-base>256</w-base>
+  <h-base>256</h-base>
+  <layers>
 
-  <layer>
-   <name>background</name>
-   <w>256</w>
-   <h>256</h>
-   <texture>
-    <path>Aircraft/KC135/Instruments/Textures/weather-radar.rgb</path>
-    <x1>0</x1>
-    <y1>0.45</y1>
-    <x2>1.0</x2>
-    <y2>1.0</y2>
-   </texture>
-  </layer>
- </layers>
+    <layer>
+      <name>background</name>
+      <w>256</w>
+      <h>256</h>
+      <texture>
+        <path>Aircraft/KC135/Instruments/Textures/weather-radar.rgb</path>
+        <x1>0</x1>
+        <y1>0.45</y1>
+        <x2>1.0</x2>
+        <y2>1.0</y2>
+      </texture>
+    </layer>
+
+    <layer>
+      <name>range knob</name>
+      <w>38</w>
+      <h>65</h>
+      <texture>
+        <path>Aircraft/KC135/Instruments/Textures/radar-rng-knob.rgb</path>
+        <x1>0</x1>
+        <y1>0</y1>
+        <x2>1.0</x2>
+        <y2>1.0</y2>
+      </texture>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>37</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-25</offset>
+        </transformation>
+        <transformation>
+          <type>rotation</type>
+          <offset>90</offset>
+        </transformation>
+        <transformation>
+          <type>rotation</type>
+          <property>instrumentation/radar/range-control</property>
+          <offset>270</offset>
+          <interpolation>
+            <entry>
+              <ind>0</ind>
+              <dep>270</dep>
+            </entry>
+            <entry>
+              <ind>1</ind>
+              <dep>300</dep>
+            </entry>
+            <entry>
+              <ind>2</ind>
+              <dep>330</dep>
+            </entry>
+            <entry>
+              <ind>3</ind>
+              <dep>0</dep>
+            </entry>
+            <entry>
+              <ind>4</ind>
+              <dep>30</dep>
+            </entry>
+            <entry>
+              <ind>5</ind>
+              <dep>60</dep>
+            </entry>
+            <entry>
+              <ind>6</ind>
+              <dep>90</dep>
+            </entry>
+            <entry>
+              <ind>7</ind>
+              <dep>120</dep>
+            </entry>
+          </interpolation>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>range knob</name>
+      <w>38</w>
+      <h>65</h>
+      <texture>
+        <path>Aircraft/KC135/Instruments/Textures/radar-mode-knob.rgb</path>
+        <x1>0</x1>
+        <y1>0</y1>
+        <x2>1.0</x2>
+        <y2>1.0</y2>
+      </texture>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <offset>-37</offset>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <offset>-25</offset>
+        </transformation>
+        <transformation>
+          <type>rotation</type>
+          <offset>90</offset>
+        </transformation>
+        <transformation>
+          <type>rotation</type>
+          <property>instrumentation/radar/mode-control</property>
+          <offset>270</offset>
+          <interpolation>
+            <entry>
+              <ind>0</ind>
+              <dep>270</dep>
+            </entry>
+            <entry>
+              <ind>1</ind>
+              <dep>300</dep>
+            </entry>
+            <entry>
+              <ind>2</ind>
+              <dep>330</dep>
+            </entry>
+            <entry>
+              <ind>3</ind>
+              <dep>0</dep>
+            </entry>
+            
+          </interpolation>
+        </transformation>
+      </transformations>
+    </layer>
+  </layers>
+  <actions>
+
+    <action>
+      <name>increase range </name>
+      <button>0</button>
+      <x>47</x>
+      <y>-58</y>
+      <w>25</w>
+      <h>75</h>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/radar/range-control</property>
+        <step type="int">1</step>
+        <min type="double">0</min>
+        <max type="double">7</max>
+      </binding>
+    </action>
+
+    <action>
+      <name>decrease range </name>
+      <button>0</button>
+      <x>2</x>
+      <y>-58</y>
+      <w>25</w>
+      <h>75</h>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/radar/range-control</property>
+        <step type="int">-1</step>
+        <min type="double">0</min>
+        <max type="double">7</max>
+      </binding>
+    </action>
+    
+    <action>
+      <name>increase mode </name>
+      <button>0</button>
+      <x>-30</x>
+      <y>-58</y>
+      <w>25</w>
+      <h>75</h>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/radar/mode-control</property>
+        <step type="int">1</step>
+        <min type="double">0</min>
+        <max type="double">3</max>
+      </binding>
+    </action>
+    
+    
+    <action>
+      <name>decrease mode  </name>
+      <button>0</button>
+      <x>-70</x>
+      <y>-58</y>
+      <w>25</w>
+      <h>75</h>
+      <binding>
+        <command>property-adjust</command>
+        <property>/instrumentation/radar/mode-control</property>
+        <step type="int">-1</step>
+        <min type="double">0</min>
+        <max type="double">3</max>
+      </binding>
+    </action>
+
+  </actions>
 </PropertyList>

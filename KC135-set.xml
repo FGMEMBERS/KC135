@@ -92,15 +92,16 @@
     <switch-position>1</switch-position>
   </dme>
  </radios>
- 
- <instrumentation>
- <radar>
-  <range type="int" archive="y">40</range>
-  <minimized type="bool" archive="y">false</minimized>
-  <switch archive="y">ON</switch>
-  <serviceable type="bool">true</serviceable>
- </radar>
-</instrumentation>
+
+  <instrumentation>
+    <radar>
+      <minimized type="bool" archive="y">false</minimized>
+      <switch archive="y">ON</switch>
+      <mode-control>1</mode-control>
+      <serviceable type="bool">true</serviceable>
+    </radar>
+  </instrumentation>
+  
 <!--3500.0-->
 <autopilot>
    <config>

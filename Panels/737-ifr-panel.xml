@@ -55,12 +55,49 @@ override those by providing <w>..</w> and <h>..</h> properties with the
       <h>262</h>
     </instrument>
 
-    <instrument include="../Instruments/pfd1.xml">
-      <name>pfd1-lh</name>
+    <instrument include="../Instruments/pfd2.xml">
+      <name>pfd1-lh-pfd</name>
+      <condition>
+        <equals>
+          <property>instrumentation/display-unit/control</property>
+          <value>0</value>
+        </equals>
+      </condition>
       <x>286</x>
       <y>128</y>
       <w>260</w>
       <h>262</h>
+    </instrument>
+
+    <instrument include="../Instruments/pfd1.xml">
+      <name>pfd1-lh-normal</name>
+      <condition>
+        <greater-than-equals>
+          <property>instrumentation/display-unit/control</property>
+          <value>1</value>
+        </greater-than-equals>
+      </condition>
+      <x>286</x>
+      <y>128</y>
+      <w>260</w>
+      <h>262</h>
+    </instrument>
+
+    
+
+    <instrument include="../Instruments/eicas.xml">
+      <name>pfd2-lh-eicas</name>
+      <condition>
+        <less-than-equals>
+          <property>instrumentation/display-unit/control</property>
+          <value>2</value>
+        </less-than-equals>
+      </condition>
+      <x>536</x>
+      <y>128</y>
+      <w>260</w>
+      <h>262</h>
+      
     </instrument>
     
     <instrument include="../Instruments/clock.xml">
@@ -184,8 +221,22 @@ override those by providing <w>..</w> and <h>..</h> properties with the
     
 
     <instrument include="../Instruments/pfd2.xml">
-      <name>pfd2-lh</name>
-      
+      <name>pfd2-lh-pfd</name>
+      <condition>
+        <or>
+        <equals>
+          
+          <property>instrumentation/display-unit/control</property>
+          <value>3</value>
+        </equals>
+          <equals>
+            <property>instrumentation/display-unit/control</property>
+            <value>1</value>
+          </equals>
+          
+        
+        </or>
+      </condition>
       <x>536</x>
       <y>128</y>
       <w>260</w>

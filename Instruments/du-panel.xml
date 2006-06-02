@@ -39,12 +39,8 @@
         </transformation>
         <transformation>
           <type>rotation</type>
-         
-          <offset>90</offset>
-        </transformation>
-        <transformation>
-          <type>rotation</type>
-          <property>/instrumentation/radar/minimized</property>
+          <property>instrumentation/display-unit/control</property>
+          <offset>315</offset>
           <interpolation>
             <entry>
               <ind>0</ind>
@@ -52,14 +48,19 @@
             </entry>
             <entry>
               <ind>1</ind>
-              <dep>270</dep>
+              <dep>45</dep>
             </entry>
-            
-            
+            <entry>
+              <ind>2</ind>
+              <dep>90</dep>
+            </entry>
+            <entry>
+              <ind>3</ind>
+              <dep>135</dep>
+            </entry>
           </interpolation>
         </transformation>
       </transformations>
-
     </layer>
 
     <layer>
@@ -82,18 +83,31 @@
           <type>y-shift</type>
           <offset>-20</offset>
         </transformation>
+        <transformation>
+          <type>rotation</type>
+          <property>/instrumentation/radar/minimized</property>
+          <interpolation>
+            <entry>
+              <ind>0</ind>
+              <dep>0</dep>
+            </entry>
+            <entry>
+              <ind>1</ind>
+              <dep>315</dep>
+            </entry>
+          </interpolation>
+        </transformation>
       </transformations>
-
     </layer>
-
-
   </layers>
+
+
   <actions>
     <action>
-      <name>minimize</name>
+      <name>lower-normal</name>
       <button>0</button>
-      <x>-30</x>
-      <y>-25</y>
+      <x>40</x>
+      <y>15</y>
       <w>40</w>
       <h>20</h>
       <binding>
@@ -104,16 +118,70 @@
     </action>
 
     <action>
-      <name>maximize</name>
+      <name>eng-pri</name>
       <button>0</button>
-      <x>-80</x>
-      <y>20</y>
+      <x>0</x>
+      <y>0</y>
       <w>40</w>
       <h>20</h>
       <binding>
         <command>property-assign</command>
         <property>/instrumentation/radar/minimized</property>
         <value>true</value>
+      </binding>
+    </action>
+    <action>
+      <name>outbd-pfd</name>
+      <button>0</button>
+      <x>-120</x>
+      <y>0</y>
+      <w>40</w>
+      <h>20</h>
+      <binding>
+        <command>property-assign</command>
+        <property>instrumentation/display-unit/control</property>
+        <value>0</value>
+      </binding>
+    </action>
+    <action>
+      <name>main-normal</name>
+      <button>0</button>
+      <x>-80</x>
+      <y>15</y>
+      <w>40</w>
+      <h>20</h>
+      <binding>
+        <command>property-assign</command>
+        <property>instrumentation/display-unit/control</property>
+        <value>1</value>
+      </binding>
+    </action>
+
+    <action>
+      <name>inbd-engpri</name>
+      <button>0</button>
+      <x>-40</x>
+      <y>0</y>
+      <w>40</w>
+      <h>20</h>
+      <binding>
+        <command>property-assign</command>
+        <property>instrumentation/display-unit/control</property>
+        <value>2</value>
+      </binding>
+    </action>
+
+    <action>
+      <name>inbd-pfd</name>
+      <button>0</button>
+      <x>-30</x>
+      <y>-30</y>
+      <w>40</w>
+      <h>20</h>
+      <binding>
+        <command>property-assign</command>
+        <property>instrumentation/display-unit/control</property>
+        <value>3</value>
       </binding>
     </action>
   </actions>
