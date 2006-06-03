@@ -34,7 +34,7 @@ properties' values.
   <layer>
    <name>background</name>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/737-flaps.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/737-flaps.rgb</path>
     <x1>0.691406</x1>
     <y1>0.02745</y1>
     <x2>1.0</x2>
@@ -44,7 +44,7 @@ properties' values.
   <layer>
    <name>handle</name>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/737-flaps.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/737-flaps.rgb</path>
     <x1>0.0</x1>
     <x2>0.140625</x2>
     <y1>0.0</y1>

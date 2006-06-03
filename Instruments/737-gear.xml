@@ -11,7 +11,7 @@
    <name>Lights-off</name>
    <type>texture</type>
     <texture>
-     <path>Aircraft/737-300/Instruments/Textures/737-flaps.rgb</path>
+     <path>Aircraft/KC135/Instruments/Textures/737-flaps.rgb</path>
      <x1>0.0</x1>
      <y1>0.87109</y1>
      <x2>0.30468</x2>
@@ -31,7 +31,7 @@
       </equals>
     </condition> 
     <texture>
-     <path>Aircraft/737-300/Instruments/Textures/737-flaps.rgb</path>
+     <path>Aircraft/KC135/Instruments/Textures/737-flaps.rgb</path>
      <x1>0.0</x1>
      <y1>0.70703</y1>
      <x2>0.30468</x2>
