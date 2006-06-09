@@ -130,6 +130,7 @@ registerTimer(updateTanker);
 
 range_control_node = props.globals.getNode("/instrumentation/radar/range-control", 1);
 range_node = props.globals.getNode("/instrumentation/radar/range", 1);
+wx_range_node = props.globals.getNode("/instrumentation/wxradar/range", 1);
 x_shift_node=  props.globals.getNode("instrumentation/tacan/display/x-shift", 1 );
 x_shift_scaled_node=  props.globals.getNode("instrumentation/tacan/display/x-shift-scaled",1);
 y_shift_node=  props.globals.getNode("instrumentation/tacan/display/y-shift", 1 );
@@ -139,6 +140,7 @@ radar_control_node = props.globals.getNode("/instrumentation/radar/mode-control"
     
 range_control_node.setIntValue(3); 
 range_node.setIntValue(40); 
+wx_range_node.setIntValue(40); 
 x_shift_node.setDoubleValue(0);
 x_shift_scaled_node.setDoubleValue(0);
 y_shift_node.setDoubleValue(0);
@@ -161,7 +163,7 @@ adjustRange = func{
 #  	print ( "range " , range);
 
 		range_node.setIntValue( range );
-		
+		wx_range_node.setIntValue( range );
     scale = 1.275 * pow2 ( 7 - range_control ) * 0.1275;
 	  scale = sprintf( "%2.3f" , scale );
 
@@ -191,9 +193,15 @@ DEGREES_TO_RADIANS = 0.01745329252;
 AllAircraft = props.globals.getNode("ai/models").getChildren("aircraft");
 AllMultiplayer = props.globals.getNode("ai/models").getChildren("multiplayer");
 AI_Enabled = props.globals.getNode("sim/ai/enabled");
-    
-    
+wx_display_node = props.globals.getNode("/instrumentation/wxradar/display-mode", 1);
+radar_mode_control_node = props.globals.getNode("/instrumentation/radar/mode-control", 1);
+radar_display_hdg_node = props.globals.getNode("/instrumentation/radar/display-heading-deg", 1);
+
+wx_display_node.setValue("plan");
+radar_mode_control_node.setIntValue(1);
+
 enabled = AI_Enabled.getValue();
+
 
 scaleRadarShift = func{
 
@@ -210,38 +218,46 @@ scaleRadarShift = func{
 						radar_in_view_node = a.getNode( "radar/in-view" , 1 );
 						radar_x_shift_scaled_node = a.getNode( "radar/x-shift-scaled" , 1 );
 						radar_y_shift_scaled_node = a.getNode( "radar/y-shift-scaled" , 1 );
-												
+						
+						radar_mode_control = radar_mode_control_node.getValue();	
 						bearing = radar_bearing_deg_node.getValue() ;
 						distance_nm = radar_distance_nm_node.getValue();
 						
-				#calculate relative bearing of tgt - we hide the target if it's behind the ac
+				#calculate relative bearing of tgt 
 								
-						#print (" hdg " , heading );
-						
 						if (heading != nil) {
 								rel_brg = bearing - heading;
 								if (rel_brg <= 0){
 										rel_brg += 360;
 								}
 								
-								if ( rel_brg < 120 or rel_brg > 240 ) {
+								if ( rel_brg < 120 or rel_brg > 240 ) { # we hide the target if it's behind the ac
 										radar_in_view_node.setBoolValue( 1 );
 								} else {
 										radar_in_view_node.setBoolValue( 0 );
 								}
 								
-						#		print (" rel brg " , rel_brg );
-						}
+								if ( radar_mode_control == 2 ) { # use rel brgs if we are in map mode
+										y_shift = distance_nm * math.cos( rel_brg * DEGREES_TO_RADIANS );
+										x_shift = distance_nm * math.sin( rel_brg * DEGREES_TO_RADIANS );
+										display_heading = 0;
+										
+								} else { # use true brgs in plan mode
+										y_shift = distance_nm * math.cos( bearing * DEGREES_TO_RADIANS );
+										x_shift = distance_nm * math.sin( bearing * DEGREES_TO_RADIANS );
+										display_heading = heading;
+								}
 								
-						y_shift = distance_nm * math.cos( bearing * DEGREES_TO_RADIANS );
-						x_shift = distance_nm * math.sin( bearing * DEGREES_TO_RADIANS );
+								radar_x_shift_scaled_node.setDoubleValue( x_shift * scale );
+								radar_y_shift_scaled_node.setDoubleValue( y_shift * scale );
+								
+								radar_display_hdg_node.setDoubleValue( display_heading );
+						}
 						
-						radar_x_shift_scaled_node.setDoubleValue( x_shift * scale );
-						radar_y_shift_scaled_node.setDoubleValue( y_shift * scale );
 					}
 			} #end foreach
 			
-			foreach(m; AllMultiplayer) {
+			foreach(m; AllMultiplayer) { # do it over for multiplayer
 					id_node = m.getNode("id", 1 );
 					id = id_node.getValue();  
 					if (id != nil ) {		
@@ -286,6 +302,17 @@ scaleRadarShift = func{
 registerTimer( scaleRadarShift );		
 	
 } # end func
+
+updateRadarMode = func{
+	radar_mode_control = radar_mode_control_node.getValue();
+		if ( radar_mode_control == 2 ) {
+				wx_display_node.setValue("map");
+		} else {
+				wx_display_node.setValue("plan");
+		}
+} # end func
+
+setlistener( radar_mode_control_node , updateRadarMode );
 
 scaleRadarShift();
 

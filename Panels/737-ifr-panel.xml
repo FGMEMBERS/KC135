@@ -33,14 +33,14 @@ override those by providing <w>..</w> and <h>..</h> properties with the
 
 <PropertyList>
 
-  <background>Aircraft/737-300/Panels/737300.rgb</background>
+  <background>Aircraft/KC135/Panels/737300.rgb</background>
   <w>1750</w>
   <h>850</h>
   <y-offset>50</y-offset>
   <view-height>500</view-height>
 
   <instruments>
-    
+
     <instrument include="../Instruments/EHSI.xml">
       <name>radar</name>
       <condition>
@@ -83,7 +83,7 @@ override those by providing <w>..</w> and <h>..</h> properties with the
       <h>262</h>
     </instrument>
 
-    
+
 
     <instrument include="../Instruments/eicas.xml">
       <name>pfd2-lh-eicas</name>
@@ -97,9 +97,9 @@ override those by providing <w>..</w> and <h>..</h> properties with the
       <y>128</y>
       <w>260</w>
       <h>262</h>
-      
+
     </instrument>
-    
+
     <instrument include="../Instruments/clock.xml">
       <name>clock RH Gauge</name>
       <x>1670</x>
@@ -218,23 +218,23 @@ override those by providing <w>..</w> and <h>..</h> properties with the
       <h>262</h>
     </instrument>
 
-    
+
 
     <instrument include="../Instruments/pfd2.xml">
       <name>pfd2-lh-pfd</name>
       <condition>
         <or>
-        <equals>
-          
-          <property>instrumentation/display-unit/control</property>
-          <value>3</value>
-        </equals>
+          <equals>
+
+            <property>instrumentation/display-unit/control</property>
+            <value>3</value>
+          </equals>
           <equals>
             <property>instrumentation/display-unit/control</property>
             <value>1</value>
           </equals>
-          
-        
+
+
         </or>
       </condition>
       <x>536</x>
@@ -307,22 +307,23 @@ override those by providing <w>..</w> and <h>..</h> properties with the
       <h>110</h>
     </instrument>
 
+
+
+    <!--<instrument include="../../Instruments/weather-radar.xml">
+      <name>weather-radar</name>
+      <condition>
+        <equals>
+          <property>instrumentation/wxradar/minimized</property>
+          <value>false</value>
+        </equals>
+      </condition>
+      <x>906</x>
+      <y>130</y>
+      <w>252</w>
+      <h>258</h>
+    </instrument>-->
     
-
-    <!--<instrument include="../../Instruments/wxradar.xml">
-   <name>weather-radar</name>
-	 <condition>
-       <equals>
-         <property>instrumentation/wxradar/minimized</property>
-         <value>false</value>
-       </equals>
-     </condition>
-   <x>866</x>
-   <y>312</y>
-   <w>275</w>
-     <h>275</h>
-   </instrument>
-
+    <!--
    <instrument include="../../Instruments/radar-minimized.xml">
      <name>Radar-minimized</name>
      <condition>
@@ -339,7 +340,7 @@ override those by providing <w>..</w> and <h>..</h> properties with the
 
   </instruments>
 
-  
+
 </PropertyList>
 
 

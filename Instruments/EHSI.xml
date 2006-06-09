@@ -1,5 +1,5 @@
 <PropertyList>
-  <name>PFD1-ALT</name>
+  <name>EHSI</name>
   <w-base>270</w-base>
   <h-base>270</h-base>
 
@@ -11,6 +11,27 @@
       <h>256</h>
       <texture>
         <path>Aircraft/Instruments/Textures/radar_background.rgb</path>
+        <x1>0</x1>
+        <y1>0</y1>
+        <x2>1</x2>
+        <y2>1</y2>
+      </texture>
+      <emissive>true</emissive>
+     </layer>
+
+    <layer>
+      <name>weather data</name>
+      <condition>
+        <equals>
+          <property>/instrumentation/radar/display-controls/WX</property>
+          <value>true</value>
+        </equals>
+      </condition>
+      <emissive>true</emissive>
+      <w>256</w>
+      <h>256</h>
+      <texture>
+        <path>Aircraft/Instruments/Textures/od_wxradar.rgb</path>
         <x1>0</x1>
         <y1>0</y1>
         <x2>1</x2>
@@ -29,10 +50,11 @@
         <x2>0.30078125</x2>
         <y2>0.953125</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>rotation</type>
-          <property>orientation/heading-deg</property>
+          <property>instrumentation/radar/display-heading-deg</property>
         </transformation>
       </transformations>
     </layer>
@@ -55,8 +77,13 @@
             <property>instrumentation/tacan/indicated-distance-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
+      <emissive>true</emissive>
       <texture>
         <path>Aircraft/a4/Instruments/Textures/radar_misc_1.rgb</path>
         <x1>0.07421875</x1>
@@ -83,6 +110,60 @@
     </layer>
 
     <layer>
+      <name>TACAN ID</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <emissive>true</emissive>
+      <condition>
+        <and>
+          <equals>
+            <property>instrumentation/tacan/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>1</value>
+          </equals>
+          <less-than-equals>
+            <property>instrumentation/tacan/indicated-distance-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <chunks>
+        <chunk>
+          <type>text-value</type>
+          <property>instrumentation/tacan/ident</property>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>instrumentation/tacan/display/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>instrumentation/tacan/display/y-shift-scaled</property>
+          <offset>-15</offset>
+        </transformation>
+        <transformation>
+          <type>rotation</type>
+          <property>instrumentation/tacan/display/rotation</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
       <name>target 0</name>
       <w>8</w>
       <h>17</h>
@@ -96,14 +177,18 @@
             <property>ai/models/aircraft[0]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[0]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -113,6 +198,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -125,6 +211,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[0]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target0 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <emissive>true</emissive>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[0]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[0]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[0]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[0]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[0]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[0]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -143,14 +284,18 @@
             <property>ai/models/aircraft[1]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[1]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -160,6 +305,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -168,6 +314,65 @@
         <transformation>
           <type>y-shift</type>
           <property>ai/models/aircraft[1]/radar/y-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>rotation</type>
+          <property>ai/models/aircraft[1]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target1 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[1]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[1]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[1]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[1]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[1]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[1]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
         <transformation>
           <type>rotation</type>
@@ -190,14 +395,18 @@
             <property>ai/models/aircraft[2]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[2]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -207,6 +416,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -219,6 +429,62 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[2]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target2 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <emissive>true</emissive>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[2]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[2]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[2]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[2]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[2]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[2]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -237,14 +503,18 @@
             <property>ai/models/aircraft[3]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[3]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -254,6 +524,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -266,6 +537,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[3]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target3 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[3]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[3]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[3]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[3]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[3]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[3]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -284,14 +610,18 @@
             <property>ai/models/aircraft[4]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[4]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -301,6 +631,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -318,6 +649,62 @@
     </layer>
 
     <layer>
+      <name>target4 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[4]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[4]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[4]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[4]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[4]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[4]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
+        </transformation>
+      </transformations>
+    </layer>
+
+
+    <layer>
       <name>target 5</name>
       <w>8</w>
       <h>17</h>
@@ -331,14 +718,18 @@
             <property>ai/models/aircraft[5]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[5]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -348,6 +739,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -360,6 +752,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[5]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target5 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[5]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[5]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[5]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[5]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[5]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[5]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -378,14 +825,18 @@
             <property>ai/models/aircraft[6]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[6]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -395,6 +846,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -407,6 +859,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[6]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target6 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[6]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[6]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[6]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[6]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[6]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[6]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -425,14 +932,18 @@
             <property>ai/models/aircraft[7]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[7]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -442,6 +953,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -454,6 +966,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[7]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target7 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[7]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[7]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[7]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[7]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[7]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[7]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -472,14 +1039,18 @@
             <property>ai/models/aircraft[8]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[8]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -489,6 +1060,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -501,6 +1073,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[8]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target8 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[8]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[8]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[8]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[8]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[8]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[8]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -519,14 +1146,18 @@
             <property>ai/models/aircraft[9]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/aircraft[9]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -536,6 +1167,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -548,6 +1180,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/aircraft[9]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>target9 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/aircraft[9]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/aircraft[9]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/aircraft[9]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/aircraft[9]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/aircraft[9]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/aircraft[9]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -566,14 +1253,18 @@
             <property>ai/models/multiplayer[0]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[0]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -583,6 +1274,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -595,6 +1287,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[0]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 0 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[0]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[0]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[0]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[0]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[0]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[0]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -613,14 +1360,18 @@
             <property>ai/models/multiplayer[1]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[1]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -630,6 +1381,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -642,6 +1394,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[1]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 1 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[1]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[1]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[1]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[1]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[1]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[1]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -660,14 +1467,18 @@
             <property>ai/models/multiplayer[2]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[2]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -677,6 +1488,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -689,6 +1501,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[2]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 2 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[2]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[2]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[2]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[2]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[2]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[2]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -707,14 +1574,18 @@
             <property>ai/models/multiplayer[3]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[3]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -724,6 +1595,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -736,6 +1608,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[3]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 3 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[3]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[3]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[3]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[3]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[3]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[3]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -754,14 +1681,18 @@
             <property>ai/models/multiplayer[4]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[4]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -771,6 +1702,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -783,6 +1715,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[4]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 4 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[4]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[4]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[4]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[4]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[4]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[4]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -801,14 +1788,18 @@
             <property>ai/models/multiplayer[5]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[5]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -818,6 +1809,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -830,6 +1822,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[5]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 5 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[5]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[5]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[5]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[5]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[5]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[5]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -848,14 +1895,18 @@
             <property>ai/models/multiplayer[6]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[6]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -865,6 +1916,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -877,6 +1929,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[6]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 6 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[6]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[6]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[6]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[6]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[6]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[6]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -895,14 +2002,18 @@
             <property>ai/models/multiplayer[7]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[7]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -912,6 +2023,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -924,6 +2036,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[7]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 7 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[7]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[7]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[7]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[7]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[7]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[7]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -942,14 +2109,18 @@
             <property>ai/models/multiplayer[8]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[8]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -959,6 +2130,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -971,6 +2143,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[8]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 8 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[8]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[8]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[8]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[8]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[8]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[8]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -989,14 +2216,18 @@
             <property>ai/models/multiplayer[9]/radar/in-view</property>
             <value>true</value>
           </equals>
-          <equals>
+          <greater-than-equals>
             <property>/instrumentation/radar/mode-control</property>
-            <value>3</value>
-          </equals>
+            <value>2</value>
+          </greater-than-equals>
           <less-than-equals>
             <property>ai/models/multiplayer[9]/radar/range-nm</property>
             <property>/instrumentation/radar/range</property>
           </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/pos</property>
+            <value>true</value>
+          </equals>
         </and>
       </condition>
       <texture>
@@ -1006,6 +2237,7 @@
         <x2>0.0703125</x2>
         <y2>0.8945312</y2>
       </texture>
+      <emissive>true</emissive>
       <transformations>
         <transformation>
           <type>x-shift</type>
@@ -1018,6 +2250,61 @@
         <transformation>
           <type>rotation</type>
           <property>ai/models/multiplayer[9]/orientation/true-heading-deg</property>
+        </transformation>
+      </transformations>
+    </layer>
+
+    <layer>
+      <name>mptarget 9 - data</name>
+      <type>text</type>
+      <font>helvetica_bold</font>
+      <point-size>10</point-size>
+      <color>
+        <red>0.5</red>
+        <green>1.0</green>
+        <blue>0.5</blue>
+      </color>
+      <condition>
+        <and>
+          <equals>
+            <property>ai/models/multiplayer[9]/radar/in-range</property>
+            <value>true</value>
+          </equals>
+          <equals>
+            <property>ai/models/multiplayer[9]/radar/in-view</property>
+            <value>true</value>
+          </equals>
+          <greater-than-equals>
+            <property>/instrumentation/radar/mode-control</property>
+            <value>2</value>
+          </greater-than-equals>
+          <less-than-equals>
+            <property>ai/models/multiplayer[9]/radar/range-nm</property>
+            <property>/instrumentation/radar/range</property>
+          </less-than-equals>
+          <equals>
+            <property>/instrumentation/radar/display-controls/data</property>
+            <value>true</value>
+          </equals>
+        </and>
+      </condition>
+      <emissive>true</emissive>
+      <chunks>
+        <chunk>
+          <type>number-value</type>
+          <property>ai/models/multiplayer[9]/radar/ht-diff-ft</property>
+          <format>%5.0f</format>
+        </chunk>
+      </chunks>
+      <transformations>
+        <transformation>
+          <type>x-shift</type>
+          <property>ai/models/multiplayer[9]/radar/x-shift-scaled</property>
+        </transformation>
+        <transformation>
+          <type>y-shift</type>
+          <property>ai/models/multiplayer[9]/radar/y-shift-scaled</property>
+          <offset>-15</offset>
         </transformation>
       </transformations>
     </layer>
@@ -1036,7 +2323,7 @@
       <h>256</h>
     </layer>
 
-    <layer>
+    <!--<layer>
       <name>range knob</name>
       <condition>
         <equals>
@@ -1100,48 +2387,19 @@
           <offset>40</offset>
         </transformation>
       </transformations>
-    </layer>
-
-
-
-    <layer>
-      <name>channel</name>
-      <type>text</type>
-      <font>courier-bold</font>
-      <point-size>15</point-size>
-      <color>
-        <red>0.96</red>
-        <green>1.0</green>
-        <blue>0.96</blue>
-      </color>
-      <chunks>
-        <chunk>
-          <type>text-value</type>
-          <property>instrumentation/tacan/display/channel</property>
-        </chunk>
-      </chunks>
-      <transformations>
-        <transformation>
-          <type>x-shift</type>
-          <offset>70</offset>
-        </transformation>
-        <transformation>
-          <type>y-shift</type>
-          <offset>-100</offset>
-        </transformation>
-      </transformations>
-    </layer>
+    </layer>-->
 
     <layer>
       <name>outer range ring</name>
       <type>text</type>
-      <font>led</font>
-      <point-size>6</point-size>
+      <font>helvetica_bold</font>
+      <point-size>12</point-size>
       <color>
-        <red>0.96</red>
+        <red>0.5</red>
         <green>1.0</green>
-        <blue>0.96</blue>
+        <blue>0.5</blue>
       </color>
+      <emissive>true</emissive>
       <chunks>
         <chunk>
           <type>number-value</type>
@@ -1164,13 +2422,14 @@
     <layer>
       <name>inner range ring</name>
       <type>text</type>
-      <font>led</font>
-      <point-size>6</point-size>
+      <font>helvetica_bold</font>
+      <point-size>12</point-size>
       <color>
-        <red>0.96</red>
+        <red>0.5</red>
         <green>1.0</green>
-        <blue>0.96</blue>
+        <blue>0.5</blue>
       </color>
+      <emissive>true</emissive>
       <chunks>
         <chunk>
           <type>number-value</type>

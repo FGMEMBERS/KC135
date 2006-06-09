@@ -1,126 +1,138 @@
 <?xml version="1.0"?>
 <PropertyList>
- <sim>
+  <sim>
 
-  <description>Boeing KC135-E</description>
-  <author type="string">Innis Cunningham, modified by Vivian Meazza</author>
-  <status>alpha</status>
+    <description>Boeing KC135-E</description>
+    <author type="string">Innis Cunningham, modified by Vivian Meazza</author>
+    <status>alpha</status>
 
-  <flight-model>jsb</flight-model>
-  <aero>KC135-E</aero>
-  <virtual-cockpit archive="y">true</virtual-cockpit> 
-  <systems>
-   
-<!--   <autopilot>
-    <path>Aircraft/KC135/Systems/autopilot.xml</path>
-   </autopilot>-->
-   
-   <electrical>
-    <path>Aircraft/KC135/Systems/electrical.xml</path>
-   </electrical>
-  </systems> 
-  
-  <sound>
-   <audible>true</audible>
-   <path>Aircraft/737-300/Sounds/737-sound.xml</path>
-  </sound>
+    <flight-model>jsb</flight-model>
+    <aero>KC135-E</aero>
+    <virtual-cockpit archive="y">true</virtual-cockpit>
+    
+    <systems>
+      <autopilot>
+        <path>Aircraft/KC135/Systems/autopilot.xml</path>
+      </autopilot>
+      <electrical>
+        <path>Aircraft/KC135/Systems/electrical.xml</path>
+      </electrical>
+    </systems>
 
-  <panel>
-   <path>Aircraft/KC135/Panels/737-ifr-panel.xml</path>
-   <visibility>true</visibility>
-  </panel>
-  
-  <model>
-   <path>Aircraft/KC135/Models/KC135.xml</path>
-  </model>
-   
-  <view>
-   <internal archive="y">true</internal>
-   <config>
-     <!-- x/y/z == right/up/back -->
-     <x-offset-m archive="y">-0.4</x-offset-m>
-     <y-offset-m archive="y">2.55</y-offset-m>
-     <z-offset-m archive="y">-6.2</z-offset-m>
-     <pitch-offset-deg archive="y">-8.0</pitch-offset-deg>
-   </config>
-  </view>
-  <view n="1">
-   <config>
-     <!-- big plane, so extend chase view offset a bit -->
-     <z-offset-m type="double" archive="y">-80.0</z-offset-m>
-   </config>
-  </view>
+    <sound>
+      <audible>true</audible>
+      <path>Aircraft/KC135/Sounds/737-sound.xml</path>
+    </sound>
 
-  <chase-distance-m>-80</chase-distance-m>
+    <panel>
+      <path>Aircraft/KC135/Panels/737-ifr-panel.xml</path>
+      <visibility>true</visibility>
+    </panel>
 
-  <!-- turns off GA tower communications -->
-  <ATC>
-   <enabled type="bool">false</enabled>
-  </ATC>
+    <model>
+      <path>Aircraft/KC135/Models/KC135.xml</path>
+    </model>
 
-  <flaps>
-   <setting>0.000</setting>
-   <setting>0.125</setting> 
-   <setting>0.250</setting> 
-   <setting>0.375</setting> 
-   <setting>0.500</setting> 
-   <setting>0.625</setting> 
-   <setting>0.750</setting> 
-   <setting>0.875</setting> 
-   <setting>1.000</setting> 
-  </flaps>
+    <view>
+      <internal archive="y">true</internal>
+      <config>
+        <!-- x/y/z == right/up/back -->
+        <x-offset-m archive="y">-0.4</x-offset-m>
+        <y-offset-m archive="y">2.55</y-offset-m>
+        <z-offset-m archive="y">-6.2</z-offset-m>
+        <pitch-offset-deg archive="y">-8.0</pitch-offset-deg>
+      </config>
+    </view>
+    <view n="1">
+      <config>
+        <!-- big plane, so extend chase view offset a bit -->
+        <z-offset-m type="double" archive="y">-80.0</z-offset-m>
+      </config>
+    </view>
 
- </sim>
+    <chase-distance-m>-80</chase-distance-m>
 
- <engines>
-  <engine n="0">
-    <running>true</running>
-  </engine>
-  <engine n="1">
-    <running>true</running>
-  </engine>
-  <engine n="2">
-    <running>true</running>
-  </engine>
-  <engine n="3">
-    <running>true</running>
-  </engine>
- </engines>
+    <!-- turns off GA tower communications -->
+    <ATC>
+      <enabled type="bool">false</enabled>
+    </ATC>
 
- <radios>
-  <dme>
-    <switch-position>1</switch-position>
-  </dme>
- </radios>
+    <flaps>
+      <setting>0.000</setting>
+      <setting>0.125</setting>
+      <setting>0.250</setting>
+      <setting>0.375</setting>
+      <setting>0.500</setting>
+      <setting>0.625</setting>
+      <setting>0.750</setting>
+      <setting>0.875</setting>
+      <setting>1.000</setting>
+    </flaps>
+
+  </sim>
+
+  <engines>
+    <engine n="0">
+      <running>true</running>
+    </engine>
+    <engine n="1">
+      <running>true</running>
+    </engine>
+    <engine n="2">
+      <running>true</running>
+    </engine>
+    <engine n="3">
+      <running>true</running>
+    </engine>
+  </engines>
+
+  <radios>
+    <dme>
+      <switch-position>1</switch-position>
+    </dme>
+  </radios>
 
   <instrumentation>
     <radar>
       <minimized type="bool" archive="y">false</minimized>
-      <switch archive="y">ON</switch>
-      <mode-control>1</mode-control>
+      <switch type="string" archive="y">ON</switch>
+      <mode-control type="int" archive="y">1</mode-control>
+      <display-controls> 
+        <WX type="bool" archive="y">false</WX>
+        <data type="bool" archive="y">false</data>
+        <pos type="bool" archive="y">true</pos>
+      </display-controls>
       <serviceable type="bool">true</serviceable>
     </radar>
+    <wxradar>
+      <range type="int" archive="y">40</range>
+      <minimized type="bool" archive="y">false</minimized>
+      <switch type="string" archive="y">ON</switch>
+      <mode type="string" archive="y">WX</mode>
+      <lightning type="bool" archive="y">false</lightning>
+      <display-mode type="string" archive="y">plan</display-mode>
+      <serviceable type="bool" >true</serviceable>
+    </wxradar>
   </instrumentation>
-  
-<!--3500.0-->
-<autopilot>
-   <config>
-     <min-climb-speed-kt type="float">150.0</min-climb-speed-kt>
-     <best-climb-speed-kt type="float">300.0</best-climb-speed-kt>
-     <target-climb-rate-fpm type="float">2000.0</target-climb-rate-fpm>
-     <target-descent-rate-fpm type="float">1500.0</target-descent-rate-fpm>
-     <elevator-adj-factor type="float">3500</elevator-adj-factor>
-     <integral-contribution type="float">0.001</integral-contribution>
-     <zero-pitch-throttle type="float">0.0001</zero-pitch-throttle>
-     <zero-pitch-trim-full-throttle type="float">0.0001</zero-pitch-trim-full-throttle>
-     <max-roll-deg type="float">30</max-roll-deg>
-     <max-aileron type="float">1.0</max-aileron>
-   </config>
- </autopilot>
+
+  <autopilot>
+    <config>
+      <min-climb-speed-kt type="float">150.0</min-climb-speed-kt>
+      <best-climb-speed-kt type="float">300.0</best-climb-speed-kt>
+      <target-climb-rate-fpm type="float">2000.0</target-climb-rate-fpm>
+      <target-descent-rate-fpm type="float">1500.0</target-descent-rate-fpm>
+      <elevator-adj-factor type="float">3500</elevator-adj-factor>
+      <integral-contribution type="float">0.001</integral-contribution>
+      <zero-pitch-throttle type="float">0.0001</zero-pitch-throttle>
+      <zero-pitch-trim-full-throttle type="float">0.0001</zero-pitch-trim-full-throttle>
+      <max-roll-deg type="float">30</max-roll-deg>
+      <max-aileron type="float">1.0</max-aileron>
+    </config>
+  </autopilot>
 
 
 
-<!--
+  <!--
  <autopilot>
   <locks>
    <heading    type="string">off</heading>
@@ -136,15 +148,15 @@
  </autopilot>
 -->
 
- <controls>
-  <autoflight>
-   <display-mach type="bool">false</display-mach>
-  </autoflight>
- </controls>
- 
- <nasal>
-    <aar> 
-        <file>Aircraft/KC135/aar.nas</file>
+  <controls>
+    <autoflight>
+      <display-mach type="bool">false</display-mach>
+    </autoflight>
+  </controls>
+
+  <nasal>
+    <aar>
+      <file>Aircraft/KC135/aar.nas</file>
     </aar>
   </nasal>
 

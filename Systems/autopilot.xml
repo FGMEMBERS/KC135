@@ -303,7 +303,7 @@
   <!-- and target altitude. -->
   <pi-simple-controller>
     <name>Altitude Hold (Altimeter based) Stage 1</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
       <value>altitude-hold</value>
@@ -328,7 +328,7 @@
   <!-- Stage #2 drives the elevator-trim to achieve the desired climb rate. -->
   <pid-controller>
     <name>Altitude Hold (Altimeter based) Stage 2</name>
-    <debug>true</debug>
+    <debug>false</debug>
     <enable>
       <prop>/autopilot/locks/altitude</prop>
       <value>altitude-hold</value>
