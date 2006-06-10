@@ -64,6 +64,40 @@
   </axis>
  </animation>
 
+  <animation>
+    <type>rotate</type>
+    <object-name>GearNoseForeStrut</object-name>
+    <property>gear/gear[0]/position-norm</property>
+    <interpolation>
+      <entry>
+        <ind>0.0</ind>
+        <dep>60</dep>
+      </entry>
+      <entry>
+        <ind>0.25</ind>
+        <dep>60</dep>
+      </entry>
+      <entry>
+        <ind>0.75</ind>
+        <dep>0</dep>
+      </entry>
+      <entry>
+        <ind>1.0</ind>
+        <dep>0</dep>
+      </entry>
+    </interpolation>
+    <center>
+      <x-m>-15.46</x-m>
+      <y-m>0</y-m>
+      <z-m>-1.40</z-m>
+    </center>
+    <axis>
+      <x>0</x>
+      <y>-1</y>
+      <z>0</z>
+    </axis>
+  </animation>
+
  <animation>
   <type>rotate</type>
   <object-name>lhngdoor</object-name>   
@@ -1159,9 +1193,9 @@
   <property>engines/engine/n1</property>
   <factor>10</factor>   
   <center>
-   <x-m> 1.87</x-m>
-   <y-m>-14.81</y-m>
-   <z-m>-0.18</z-m>
+   <x-m> 0.68</x-m>
+   <y-m>-14.18</y-m>
+   <z-m>-1.07</z-m>
   </center>
   <axis>
    <x>1</x>
@@ -1176,9 +1210,9 @@
   <property>engines/engine/n1</property>
   <factor>10</factor>   
   <center>
-   <x-m>-2.09</x-m>
-   <y-m>-10.05</y-m>
-   <z-m>-0.73</z-m>
+    <x-m>-3.86</x-m>
+    <y-m>-8.86</y-m>
+    <z-m>-1.54</z-m>
   </center>
   <axis>
    <x>1</x>
@@ -1193,9 +1227,9 @@
   <property>engines/engine/n1</property>
   <factor>10</factor>   
   <center>
-   <x-m>-2.09</x-m>
-   <y-m>10.04</y-m>
-   <z-m>-0.73</z-m>
+   <x-m>-3.86</x-m>
+   <y-m>8.86</y-m>
+   <z-m>-1.54</z-m>
   </center>
   <axis>
    <x>1</x>
@@ -1210,9 +1244,9 @@
   <property>engines/engine/n1</property>
   <factor>10</factor>   
   <center>
-   <x-m>1.83</x-m>
-   <y-m>14.81</y-m>
-   <z-m>-0.18</z-m>
+    <x-m> 0.68</x-m>
+    <y-m>14.18</y-m>
+    <z-m>-1.07</z-m>
   </center>
   <axis>
    <x>1</x>
@@ -1221,22 +1255,17 @@
   </axis>
  </animation> 
  
-<!--<animation>
+<animation>
 	<type>select</type>
-	<object-name>lhdoorouter</object-name>
-	<object-name>lhdoorinner</object-name> 
+	<object-name>nosegear</object-name>
 	<condition>
-		<less-than>
-			<property>gear/gear[1]/position-norm</property>
-			<value>1</value>
-		</less-than>
-		<greater-than>
-			<property>gear/gear[1]/position-norm</property>
+    <greater-than>
+			<property>gear/gear[0]/position-norm</property>
 			<value>0</value>
 		</greater-than>
 	</condition>
 </animation>
-
+<!--
 <animation>
 	<type>select</type>
 	<object-name>rhdoorouter</object-name>
@@ -1298,41 +1327,9 @@
 		</greater-than>
 	</condition>
 </animation>
--->
-<animation>
-  <type>rotate</type>
-  <object-name>nosegear</object-name>
-  <property>gear/gear[0]/position-norm</property>
-   <interpolation>
-    <entry>
-      <ind>0.0</ind>
-      <dep>115.0</dep>
-    </entry>
-    <entry>
-      <ind>0.25</ind>
-      <dep>115.0</dep>
-    </entry>
-    <entry>
-      <ind>0.75</ind>
-      <dep>0.0</dep>
-    </entry>
-    <entry>
-      <ind>1.0</ind>
-      <dep>0.0</dep>
-    </entry>
-  </interpolation>
-  <center>
-   <x-m>-15.46</x-m>
-   <y-m>0</y-m>
-   <z-m>-1.40</z-m>
-  </center>
-  <axis>
-   <x>0</x>
-   <y>1</y>
-   <z>0</z>
-  </axis>
- </animation>
 
+
+-->
  <animation>
   <type>rotate</type>
   <object-name>boom</object-name>   
@@ -1359,7 +1356,28 @@
   </axis>
  </animation>
 
- 
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>chrome2.rgb</texture>
+    <object-name>lh-main-oleo-lower</object-name>
+  </animation>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>chrome2.rgb</texture>
+    <object-name>rh-main-oleo-lower</object-name>
+  </animation>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>chrome2.rgb</texture>
+    <object-name>nose-oleo-lower</object-name>
+  </animation>
+
+  
 </PropertyList>
 
 
