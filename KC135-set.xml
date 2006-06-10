@@ -4,7 +4,7 @@
 
     <description>Boeing KC135-E</description>
     <author type="string">Innis Cunningham, modified by Vivian Meazza</author>
-    <status>alpha</status>
+    <status>early production</status>
 
     <flight-model>jsb</flight-model>
     <aero>KC135-E</aero>
