@@ -87,9 +87,9 @@
       </entry>
     </interpolation>
     <center>
-      <x-m>-15.46</x-m>
+      <x-m>-15.66</x-m>
       <y-m>0</y-m>
-      <z-m>-1.40</z-m>
+      <z-m>-1.69</z-m>
     </center>
     <axis>
       <x>0</x>
@@ -1375,6 +1375,13 @@
     <shader>chrome</shader>
     <texture>chrome2.rgb</texture>
     <object-name>nose-oleo-lower</object-name>
+  </animation>
+
+  <animation>
+    <type>shader</type>
+    <shader>chrome</shader>
+    <texture>chrome2.rgb</texture>
+    <object-name>GearNoseTorqueLinkPivot</object-name>
   </animation>
 
   
