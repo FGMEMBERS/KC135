@@ -18,7 +18,7 @@
    </greater-than>
   </condition>   
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/gear-lights.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/gear-lights.rgb</path>
     <x1>0.0</x1>
     <y1>0.0</y1>
     <x2>0.5</x2>
@@ -36,7 +36,7 @@
    </equals>
   </condition>   
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/gear-lights.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/gear-lights.rgb</path>
     <x1>0.0</x1>
     <y1>0.5</y1>
     <x2>0.5</x2>
@@ -53,7 +53,7 @@
    </equals>
   </condition>   
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/gear-lights.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/gear-lights.rgb</path>
     <x1>0.5</x1>
     <y1>0.0</y1>
     <x2>1.0</x2>

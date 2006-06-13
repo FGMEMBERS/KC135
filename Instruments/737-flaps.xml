@@ -33,6 +33,7 @@ properties' values.
  <layers>
   <layer>
    <name>background</name>
+    <emissive>true</emissive>
    <texture>
     <path>Aircraft/KC135/Instruments/Textures/737-flaps.rgb</path>
     <x1>0.691406</x1>

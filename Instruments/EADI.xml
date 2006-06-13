@@ -37,7 +37,7 @@ properties' values.
    <name>ladder</name>
    <type>texture</type>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/eadi_ladder.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/eadi_ladder.rgb</path>
     <x1>0.007843</x1>
     <y1>0.0</y1>
     <x2>0.507843</x2>
@@ -72,7 +72,7 @@ properties' values.
    <name>mask</name>
    <type>texture</type>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/adihsi.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/adihsi.rgb</path>
     <x1>0.0</x1>
     <y1>0.0</y1>
     <x2>0.737255</x2>
@@ -90,7 +90,7 @@ properties' values.
     </equals>
    </condition>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/adihsi.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/adihsi.rgb</path>
     <x1>0.0</x1>
     <y1>0.962818</y1>
     <x2>0.02353</x2>
@@ -123,7 +123,7 @@ properties' values.
     </equals>
    </condition>
    <texture>
-    <path>Aircraft/737-300/Instruments/Textures/adihsi.rgb</path>
+    <path>Aircraft/KC135/Instruments/Textures/adihsi.rgb</path>
     <x1>0.0</x1>
     <y1>0.988258</y1>
     <x2>0.011765</x2>

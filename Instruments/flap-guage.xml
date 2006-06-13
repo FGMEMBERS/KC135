@@ -7,8 +7,9 @@
    <name>background</name>
    <w>110</w>
    <h>110</h>
+    
    <texture>
-     <path>Aircraft/737-300/Instruments/Textures/flap-guage.rgb</path>
+     <path>Aircraft/KC135/Instruments/Textures/flap-guage.rgb</path>
     <x1>0.0</x1>
     <x2>1.0</x2>
     <y1>0.0</y1>
@@ -20,6 +21,7 @@
    <name>big needle</name>
    <w>4</w>
    <h>32</h>
+    <emissive>true</emissive>
    <texture>
     <path>Aircraft/Instruments/Textures/misc-1.rgb</path>
     <x1>0.8</x1>

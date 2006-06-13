@@ -21,7 +21,7 @@
     </and>
   </condition> 
   <texture>
-   <path>Aircraft/737-300/Instruments/Textures/gear-lights.rgb</path>
+   <path>Aircraft/KC135/Instruments/Textures/gear-lights.rgb</path>
    <x1>0.5</x1>
    <y1>0.5</y1>
    <x2>0.75</x2>
@@ -44,7 +44,7 @@
    </or>
   </condition>   
   <texture>
-   <path>Aircraft/737-300/Instruments/Textures/gear-lights.rgb</path>
+   <path>Aircraft/KC135/Instruments/Textures/gear-lights.rgb</path>
    <x1>0.5</x1>
    <y1>0.75</y1>
    <x2>0.75</x2>

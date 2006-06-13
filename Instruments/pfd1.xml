@@ -507,13 +507,13 @@
         <chunk>
           <type>number-value</type>
           <property>/orientation/heading-magnetic-deg[0]</property>
-          <format>%6.0f</format>
+          <format>%3.0f</format>
         </chunk>
       </chunks>
       <transformations>
         <transformation>
           <type>x-shift</type>
-          <offset>-60</offset>
+          <offset>-52</offset>
         </transformation>
         <transformation>
           <type>y-shift</type>
