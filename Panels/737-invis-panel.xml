@@ -9,7 +9,7 @@ _______________________________________________________________________
 
 <PropertyList>
  <name>737 Panel</name>
- <background>Aircraft/B737/Panels/737-invis-1024x1024.rgb</background>
+ <background>Aircraft/KC135/Panels/737-invis-1024x1024.rgb</background>
  <w>1024</w>
  <h>1024</h>
  <y-offset>0</y-offset>

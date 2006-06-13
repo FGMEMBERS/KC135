@@ -218,14 +218,11 @@ override those by providing <w>..</w> and <h>..</h> properties with the
       <h>262</h>
     </instrument>
 
-
-
     <instrument include="../Instruments/pfd2.xml">
       <name>pfd2-lh-pfd</name>
       <condition>
         <or>
           <equals>
-
             <property>instrumentation/display-unit/control</property>
             <value>3</value>
           </equals>
@@ -233,8 +230,6 @@ override those by providing <w>..</w> and <h>..</h> properties with the
             <property>instrumentation/display-unit/control</property>
             <value>1</value>
           </equals>
-
-
         </or>
       </condition>
       <x>536</x>
@@ -306,37 +301,6 @@ override those by providing <w>..</w> and <h>..</h> properties with the
       <w>160</w>
       <h>110</h>
     </instrument>
-
-
-
-    <!--<instrument include="../../Instruments/weather-radar.xml">
-      <name>weather-radar</name>
-      <condition>
-        <equals>
-          <property>instrumentation/wxradar/minimized</property>
-          <value>false</value>
-        </equals>
-      </condition>
-      <x>906</x>
-      <y>130</y>
-      <w>252</w>
-      <h>258</h>
-    </instrument>-->
-    
-    <!--
-   <instrument include="../../Instruments/radar-minimized.xml">
-     <name>Radar-minimized</name>
-     <condition>
-       <equals>
-         <property>instrumentation/wxradar/minimized</property>
-         <value>true</value>
-       </equals>
-     </condition>
-     <x>866</x>
-     <y>312</y>
-     <w>44</w>
-     <h>16</h>
-   </instrument>-->
 
   </instruments>
 
