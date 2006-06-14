@@ -259,13 +259,14 @@ scaleRadarShift = func{
 			
 			foreach(m; AllMultiplayer) { # do it over for multiplayer
 					id_node = m.getNode("id", 1 );
-					id = id_node.getValue();  
+					id = id_node.getValue(); 
+					print (" id " , id ); 
 					if (id != nil ) {		
 						multiplayer_bearing_deg_node = m.getNode("radar/bearing-deg");
 						multiplayer_distance_nm_node = m.getNode("radar/range-nm");
 						multiplayer_x_shift_scaled_node = m.getNode("radar/x-shift-scaled" , 1 );
 						multiplayer_y_shift_scaled_node = m.getNode("radar/y-shift-scaled" , 1 );
-						multiplayer_in_view_node = a.getNode( "radar/in-view" , 1 );
+						multiplayer_in_view_node = m.getNode( "radar/in-view" , 1 );
 						
 						bearing = multiplayer_bearing_deg_node.getValue() ;
 						distance_nm = multiplayer_distance_nm_node.getValue();
@@ -279,9 +280,9 @@ scaleRadarShift = func{
 								}
 								
 								if ( rel_brg < 120 or rel_brg > 240 ) { # we hide the target if it's behind the ac
-										radar_in_view_node.setBoolValue( 1 );
+										multiplayer_in_view_node.setBoolValue( 1 );
 								} else {
-										radar_in_view_node.setBoolValue( 0 );
+										multiplayer_in_view_node.setBoolValue( 0 );
 								}
 								
 								if ( radar_mode_control == 2 ) { # use rel brgs if we are in map mode
@@ -295,13 +296,13 @@ scaleRadarShift = func{
 										display_heading = heading;
 								}
 								
-						
 						y_shift = distance_nm * math.cos( bearing * DEGREES_TO_RADIANS );
 						x_shift = distance_nm * math.sin( bearing * DEGREES_TO_RADIANS );
 						
 						multiplayer_x_shift_scaled_node.setDoubleValue( x_shift * scale );
 						multiplayer_y_shift_scaled_node.setDoubleValue( y_shift * scale );
 					}
+				}
 			} #end foreach
 	
 	} # endif
