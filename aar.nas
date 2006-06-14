@@ -296,9 +296,6 @@ scaleRadarShift = func{
 										display_heading = heading;
 								}
 								
-						y_shift = distance_nm * math.cos( bearing * DEGREES_TO_RADIANS );
-						x_shift = distance_nm * math.sin( bearing * DEGREES_TO_RADIANS );
-						
 						multiplayer_x_shift_scaled_node.setDoubleValue( x_shift * scale );
 						multiplayer_y_shift_scaled_node.setDoubleValue( y_shift * scale );
 					}
