@@ -270,24 +270,31 @@ scaleRadarShift = func{
 						bearing = multiplayer_bearing_deg_node.getValue() ;
 						distance_nm = multiplayer_distance_nm_node.getValue();
 						
-						#calculate relative bearing of tgt - we hide the target if it's behind the ac
-						
-						#print (" hdg " , heading );
-						
+						#calculate relative bearing of tgt 
+								
 						if (heading != nil) {
 								rel_brg = bearing - heading;
 								if (rel_brg <= 0){
 										rel_brg += 360;
 								}
 								
-								if ( rel_brg < 120 or rel_brg > 240 ) {
-										multiplayer_in_view_node.setBoolValue( 1 );
+								if ( rel_brg < 120 or rel_brg > 240 ) { # we hide the target if it's behind the ac
+										radar_in_view_node.setBoolValue( 1 );
 								} else {
-										multiplayer_in_view_node.setBoolValue( 0 );
+										radar_in_view_node.setBoolValue( 0 );
 								}
 								
-						#		print (" rel brg " , rel_brg );
-						}
+								if ( radar_mode_control == 2 ) { # use rel brgs if we are in map mode
+										y_shift = distance_nm * math.cos( rel_brg * DEGREES_TO_RADIANS );
+										x_shift = distance_nm * math.sin( rel_brg * DEGREES_TO_RADIANS );
+										display_heading = 0;
+										
+								} else { # use true brgs in plan mode
+										y_shift = distance_nm * math.cos( bearing * DEGREES_TO_RADIANS );
+										x_shift = distance_nm * math.sin( bearing * DEGREES_TO_RADIANS );
+										display_heading = heading;
+								}
+								
 						
 						y_shift = distance_nm * math.cos( bearing * DEGREES_TO_RADIANS );
 						x_shift = distance_nm * math.sin( bearing * DEGREES_TO_RADIANS );
