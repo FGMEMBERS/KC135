@@ -260,7 +260,7 @@ scaleRadarShift = func{
 			foreach(m; AllMultiplayer) { # do it over for multiplayer
 					id_node = m.getNode("id", 1 );
 					id = id_node.getValue(); 
-					print (" id " , id ); 
+					
 					if (id != nil ) {		
 						multiplayer_bearing_deg_node = m.getNode("radar/bearing-deg");
 						multiplayer_distance_nm_node = m.getNode("radar/range-nm");
