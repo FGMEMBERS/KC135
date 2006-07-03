@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
  
-<!-- Generic Autopilot Configuration -->
+<!-- KC135 Autopilot Configuration -->
 
 <!-- Each component is evaluated in the order specified.  You can make up -->
 <!-- property names to pass the result of one component on to a subsequent -->
@@ -55,7 +55,8 @@
       <value>dg-heading-hold</value>
     </enable>
     <input>
-      <prop>/autopilot/internal/fdm-heading-bug-error-deg</prop>
+      <!--<prop>/autopilot/internal/heading-bug-error-deg</prop>-->
+      <prop>/instrumentation/heading-indicator-fg/heading-bug-error-deg</prop>
     </input>
     <reference>
       <value>0.0</value>
@@ -181,7 +182,7 @@
       <value>nav1-hold</value>
     </enable>
     <input>
-      <prop>/autopilot/internal/nav1-heading-error-deg</prop>
+      <prop>/instrumentation/heading-indicator-fg/nav1-course-error-deg</prop>
     </input>
     <reference>
       <value>0.0</value>

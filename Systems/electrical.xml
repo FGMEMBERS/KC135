@@ -56,6 +56,7 @@
     <prop>/systems/electrical/outputs/mk-viii</prop>
     <prop>/systems/electrical/outputs/tacan</prop>
 		<prop>/systems/electrical/outputs/wxRadar</prop>
+    <prop>/systems/electrical/outputs/DG</prop>
 		
   </bus>
 
