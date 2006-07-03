@@ -47,7 +47,7 @@
         </transformation>
         <transformation>
           <type>rotation</type>
-          <property>/orientation/heading-magnetic-deg</property>
+          <property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
           <min>-360.0</min>
           <max>360.0</max>
           <scale>-1.0</scale>
@@ -87,7 +87,7 @@
         </transformation>
         <transformation>
           <type>rotation</type>
-          <property>/orientation/heading-magnetic-deg</property>
+          <property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
           <min>0.0</min>
           <max>360</max>
           <scale>-1.0</scale>
@@ -128,7 +128,7 @@
         </transformation>
         <transformation>
           <type>rotation</type>
-          <property>/orientation/heading-magnetic-deg</property>
+          <property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
           <min>0.0</min>
           <max>360</max>
           <scale>-1.0</scale>
@@ -176,7 +176,7 @@
         </transformation>
         <transformation>
           <type>rotation</type>
-          <property>/orientation/heading-magnetic-deg</property>
+          <property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
           <min>0.0</min>
           <max>360</max>
           <scale>-1.0</scale>
@@ -259,7 +259,7 @@
         </transformation>
         <transformation>
           <type>rotation</type>
-          <property>/orientation/heading-magnetic-deg</property>
+          <property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
           <min>0.0</min>
           <max>360</max>
           <scale>-1.0</scale>
@@ -297,7 +297,7 @@
         </transformation>
         <transformation>
           <type>rotation</type>
-          <property>/orientation/heading-magnetic-deg</property>
+          <property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
           <min>0.0</min>
           <max>360</max>
           <scale>-1.0</scale>
@@ -506,7 +506,7 @@
       <chunks>
         <chunk>
           <type>number-value</type>
-          <property>/orientation/heading-magnetic-deg[0]</property>
+          <property>instrumentation/heading-indicator-fg/indicated-heading-deg</property>
           <format>%3.0f</format>
         </chunk>
       </chunks>
