@@ -374,10 +374,6 @@
           <property>ai/models/aircraft[1]/radar/y-shift-scaled</property>
           <offset>-15</offset>
         </transformation>
-        <transformation>
-          <type>rotation</type>
-          <property>ai/models/aircraft[1]/orientation/true-heading-deg</property>
-        </transformation>
       </transformations>
     </layer>
 
