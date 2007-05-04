@@ -22,7 +22,7 @@
 
     <sound>
       <audible>true</audible>
-      <path>Aircraft/KC135/Sounds/737-sound.xml</path>
+      <path>Aircraft/737-300/Sounds/737-sound.xml</path>
     </sound>
 
     <panel>
@@ -37,8 +37,6 @@
     <instrumentation>
       <path>Aircraft/KC135/Systems/instrumentation.xml</path>
     </instrumentation>
-		
-		<number-views type="int">7</number-views>
 
     <view>
       <internal archive="y">true</internal>
@@ -50,24 +48,24 @@
         <pitch-offset-deg archive="y">-8.0</pitch-offset-deg>
       </config>
     </view>
-    
-		<view n="6">
-		<name>Boomer View</name>
-		 <type>lookfrom</type>
-		 <internal type="bool">true</internal>
-		 <config>
-			<from-model type="bool">true</from-model>
-			<ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
-			<default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
-			<x-offset-m archive="y">0</x-offset-m><!-- right/left -->
-			<y-offset-m archive="y">-0.8</y-offset-m><!-- up/down -->
-			<z-offset-m archive="y" type="double">13.5</z-offset-m><!-- aft/fore -->
-			<pitch-offset-deg>-24.4</pitch-offset-deg>
-			<heading-offset-deg>180</heading-offset-deg>
-		 </config>
-		</view>
-		
-		<chase-distance-m>-80</chase-distance-m>
+
+    <view n="100">
+      <name>Boomer View</name>
+      <type>lookfrom</type>
+      <internal type="bool">true</internal>
+      <config>
+        <from-model type="bool">true</from-model>
+        <ground-level-nearplane-m type="double">0.5f</ground-level-nearplane-m>
+        <default-field-of-view-deg type="double">55.0</default-field-of-view-deg>
+        <x-offset-m archive="y">0</x-offset-m><!-- right/left -->
+        <y-offset-m archive="y">-0.8</y-offset-m><!-- up/down -->
+        <z-offset-m archive="y" type="double">13.5</z-offset-m><!-- aft/fore -->
+        <pitch-offset-deg>-24.4</pitch-offset-deg>
+        <heading-offset-deg>180</heading-offset-deg>
+      </config>
+    </view>
+
+    <chase-distance-m>-80</chase-distance-m>
 
     <!-- turns off GA tower communications -->
     <ATC>
