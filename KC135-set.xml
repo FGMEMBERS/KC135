@@ -108,9 +108,8 @@
   </radios>
 
   <!-- ************Instrumentation ************************* -->
-  <instrumentation >
+  <instrumentation>
     <radar>
-      <minimized type="bool" archive="y">false</minimized>
       <switch type="string" archive="y">ON</switch>
       <mode-control type="int" archive="y">1</mode-control>
       <display-controls>
@@ -119,16 +118,12 @@
         <pos type="bool" archive="y">true</pos>
       </display-controls>
       <serviceable type="bool">true</serviceable>
-    </radar>
-    <wxradar>
       <range type="int" archive="y">40</range>
-      <minimized type="bool" archive="y">false</minimized>
-      <switch type="string" archive="y">ON</switch>
       <mode type="string" archive="y">WX</mode>
       <lightning type="bool" archive="y">false</lightning>
       <display-mode type="string" archive="y">plan</display-mode>
-      <serviceable type="bool" >true</serviceable>
-    </wxradar>
+      <minimized type="bool" archive="y">false</minimized>
+    </radar>
   </instrumentation>
 
   <autopilot>

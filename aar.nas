@@ -130,7 +130,7 @@ registerTimer(updateTanker);
 
 range_control_node = props.globals.getNode("/instrumentation/radar/range-control", 1);
 range_node = props.globals.getNode("/instrumentation/radar/range", 1);
-wx_range_node = props.globals.getNode("/instrumentation/wxradar/range", 1);
+wx_range_node = props.globals.getNode("/instrumentation/radar/range", 1);
 x_shift_node=  props.globals.getNode("instrumentation/tacan/display/x-shift", 1 );
 x_shift_scaled_node=  props.globals.getNode("instrumentation/tacan/display/x-shift-scaled",1);
 y_shift_node=  props.globals.getNode("instrumentation/tacan/display/y-shift", 1 );
@@ -193,7 +193,7 @@ DEGREES_TO_RADIANS = 0.01745329252;
 AllAircraft = props.globals.getNode("ai/models").getChildren("aircraft");
 AllMultiplayer = props.globals.getNode("ai/models").getChildren("multiplayer");
 AI_Enabled = props.globals.getNode("sim/ai/enabled");
-wx_display_node = props.globals.getNode("/instrumentation/wxradar/display-mode", 1);
+wx_display_node = props.globals.getNode("/instrumentation/radar/display-mode", 1);
 radar_mode_control_node = props.globals.getNode("/instrumentation/radar/mode-control", 1);
 radar_display_hdg_node = props.globals.getNode("/instrumentation/radar/display-heading-deg", 1);
 
