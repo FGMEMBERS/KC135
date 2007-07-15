@@ -2,13 +2,12 @@
 <PropertyList>
 	<sim>
 
-		<description>Boeing KC-135E</description>
+		<description type="string">Boeing KC-135E</description>
 		<author type="string">
 			Innis Cunningham, Vivian Meazza, David Culp
 			and Julien Pierru
 		</author>
-		<status>early production</status>
-
+		<status type="string">>early production</status>
 		<flight-model>jsb</flight-model>
 		<aero>KC135-E</aero>
 		<virtual-cockpit archive="y">true</virtual-cockpit>
@@ -123,10 +122,12 @@
 			<display-controls>
 				<WX type="bool"
 						archive="y">false</WX>
-				<data type="bool"
-							archive="y">false</data>
 				<pos type="bool"
 						 archive="y">true</pos>
+				<data type="bool"
+							archive="y">false</data>
+				<symbol type="bool"
+						 archive="y">false</symbol>
 			</display-controls>
 			<serviceable type="bool">true</serviceable>
 			<range type="int"
@@ -156,24 +157,6 @@
 			<max-aileron type="float">1.0</max-aileron>
 		</config>
 	</autopilot>
-
-
-
-	<!--
- <autopilot>
-  <locks>
-   <heading    type="string">off</heading>
-   <altitude   type="string">off</altitude>
-   <speed      type="string">off</speed>
-   <vert-speed type="string">off</vert-speed>
-  </locks>
-  <settings>
-   <target-altitude-ft type="double">10000.0</target-altitude-ft>
-   <target-speed-kt type="double">150.0</target-speed-kt>
-   <target-n1 type="double">93.0</target-n1>
-  </settings>
- </autopilot>
--->
 
 	<controls>
 		<autoflight>

@@ -5,7 +5,7 @@ OBJECT world
 kids 2
 OBJECT poly
 name "Beacon"
-loc 0.003318 0.027039 0
+loc 0.0033173 -0.0246122 0
 texture "red.rgb"
 crease 45.000000
 numvert 13
@@ -98,7 +98,7 @@ refs 3
 kids 0
 OBJECT poly
 name "Dome"
-loc -0.122459 -0.928939 -1.12013
+loc -0.12246 -0.968712 -1.12013
 crease 45.000000
 numvert 13
 0.122461 1.00964 1.12013
