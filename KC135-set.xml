@@ -7,7 +7,7 @@
 			Innis Cunningham, Vivian Meazza, David Culp
 			and Julien Pierru
 		</author>
-		<status type="string">>early production</status>
+		<status type="string">early production</status>
 		<flight-model>jsb</flight-model>
 		<aero>KC135-E</aero>
 		<virtual-cockpit archive="y">true</virtual-cockpit>
