@@ -166,7 +166,7 @@
 
 	<systems>
 		<refuel>
-			<system>boom</system>
+			<type>boom</type>
 		</refuel>
 	</systems>
 

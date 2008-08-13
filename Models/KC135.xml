@@ -5,7 +5,7 @@
 	<path>KC135.ac</path>
 
 	<nasal>
-		<load>cmdarg().getNode("refuel/system", 1).setValue("boom")</load>
+		<load>cmdarg().getNode("refuel/type", 1).setValue("boom")</load>
 	</nasal>
 
 	<offsets>
