@@ -4,9 +4,11 @@
 
 	<path>KC135.ac</path>
 
-	<nasal>
-		<load>cmdarg().getNode("refuel/type", 1).setValue("boom")</load>
-	</nasal>
+	<multiplay>
+		<refuel>
+			<type>boom</type>
+		</refuel>
+	</multiplay>
 
 	<offsets>
 		<x-m>0</x-m>
