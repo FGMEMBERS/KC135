@@ -172,7 +172,7 @@
 
 	<nasal>
 		<aar>
-			<file>Aircraft/KC135/aar.nas</file>
+			<file>Aircraft/Generic/aar.nas</file>
 		</aar>
 		<radar>
 			<file>Aircraft/KC135/radar.nas</file>
