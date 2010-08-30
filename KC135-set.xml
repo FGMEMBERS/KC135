@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <PropertyList>
+
 	<sim>
 
 		<description type="string">Boeing KC-135E</description>
@@ -89,7 +90,17 @@
 			<setting>1.000</setting>
 		</flaps>
 
+		<multiplay>
+			<generic>
+				<int n="0"
+						 alias="/tanker"/>
+			</generic>
+		</multiplay>
+
 	</sim>
+
+	<!-- *************** set properties **********************-->
+	<tanker type="bool">true</tanker>
 
 	<engines>
 		<engine n="0">
@@ -166,7 +177,8 @@
 
 	<systems>
 		<refuel>
-			<type>boom</type>
+			<type type="string">boom</type>
+			<serviceable type="bool">true</serviceable>
 		</refuel>
 	</systems>
 
