@@ -1,0 +1,404 @@
+<PropertyList>
+	<name>DU panel</name>
+	<w-base>256</w-base>
+	<h-base>256</h-base>
+
+	<layers>
+
+		<layer>
+			<name>background</name>
+			<w>256</w>
+			<h>256</h>
+			<texture>
+				<path>Aircraft/KC135/Instruments/Textures/weather-radar.rgb</path>
+				<x1>0</x1>
+				<y1>0.45</y1>
+				<x2>1.0</x2>
+				<y2>1.0</y2>
+			</texture>
+		</layer>
+
+		<layer>
+			<name>range knob</name>
+			<w>38</w>
+			<h>65</h>
+			<texture>
+				<path>Aircraft/KC135/Instruments/Textures/radar-rng-knob.rgb</path>
+				<x1>0</x1>
+				<y1>0</y1>
+				<x2>1.0</x2>
+				<y2>1.0</y2>
+			</texture>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<offset>37</offset>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<offset>-25</offset>
+				</transformation>
+				<transformation>
+					<type>rotation</type>
+					<offset>90</offset>
+				</transformation>
+				<transformation>
+					<type>rotation</type>
+					<property>instrumentation/radar/range-control</property>
+					<offset>270</offset>
+					<interpolation>
+						<entry>
+							<ind>0</ind>
+							<dep>270</dep>
+						</entry>
+						<entry>
+							<ind>1</ind>
+							<dep>300</dep>
+						</entry>
+						<entry>
+							<ind>2</ind>
+							<dep>330</dep>
+						</entry>
+						<entry>
+							<ind>3</ind>
+							<dep>0</dep>
+						</entry>
+						<entry>
+							<ind>4</ind>
+							<dep>30</dep>
+						</entry>
+						<entry>
+							<ind>5</ind>
+							<dep>60</dep>
+						</entry>
+						<entry>
+							<ind>6</ind>
+							<dep>90</dep>
+						</entry>
+						<entry>
+							<ind>7</ind>
+							<dep>120</dep>
+						</entry>
+					</interpolation>
+				</transformation>
+			</transformations>
+		</layer>
+
+		<layer>
+			<name>range mode knob</name>
+			<w>38</w>
+			<h>65</h>
+			<texture>
+				<path>Aircraft/KC135/Instruments/Textures/radar-mode-knob.rgb</path>
+				<x1>0</x1>
+				<y1>0</y1>
+				<x2>1.0</x2>
+				<y2>1.0</y2>
+			</texture>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<offset>-37</offset>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<offset>-25</offset>
+				</transformation>
+				<transformation>
+					<type>rotation</type>
+					<offset>90</offset>
+				</transformation>
+				<transformation>
+					<type>rotation</type>
+					<property>instrumentation/radar/mode-control</property>
+					<offset>270</offset>
+					<interpolation>
+						<entry>
+							<ind>0</ind>
+							<dep>270</dep>
+						</entry>
+						<entry>
+							<ind>1</ind>
+							<dep>300</dep>
+						</entry>
+						<entry>
+							<ind>2</ind>
+							<dep>330</dep>
+						</entry>
+						<entry>
+							<ind>3</ind>
+							<dep>0</dep>
+						</entry>
+					</interpolation>
+				</transformation>
+			</transformations>
+		</layer>
+
+		<layer>
+			<name>WX</name>
+			<type>switch</type>
+			<layer>
+				<condition>
+					<equals>
+						<property>/instrumentation/radar/display-controls/WX</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<name>WX on</name>
+				<emissive>true</emissive>
+				<texture>
+					<path>Aircraft/KC135/Instruments/Textures/auto-throttle-arm.rgb</path>
+					<x1>0.0</x1>
+					<x2>1.0</x2>
+					<y1>0.5</y1>
+					<y2>1.0</y2>
+				</texture>
+				<w>25</w>
+				<h>20</h>
+			</layer>
+			<layer>
+				<name>WX off</name>
+				<texture>
+					<path>Aircraft/KC135/Instruments/Textures/auto-throttle-arm.rgb</path>
+					<x1>0.0</x1>
+					<x2>1.0</x2>
+					<y1>0.0</y1>
+					<y2>0.5</y2>
+				</texture>
+				<w>25</w>
+				<h>20</h>
+			</layer>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<offset>-102</offset>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<offset>-82</offset>
+				</transformation>
+			</transformations>
+		</layer>
+
+		<layer>
+			<name>data</name>
+			<type>switch</type>
+			<layer>
+				<condition>
+					<equals>
+						<property>instrumentation/radar/display-controls/data</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<name>data on</name>
+				<emissive>true</emissive>
+				<texture>
+					<path>Aircraft/KC135/Instruments/Textures/auto-throttle-arm.rgb</path>
+					<x1>0.0</x1>
+					<x2>1.0</x2>
+					<y1>0.5</y1>
+					<y2>1.0</y2>
+				</texture>
+				<w>25</w>
+				<h>20</h>
+			</layer>
+			<layer>
+				<name>data off</name>
+				<texture>
+					<path>Aircraft/KC135/Instruments/Textures/auto-throttle-arm.rgb</path>
+					<x1>0.0</x1>
+					<x2>1.0</x2>
+					<y1>0.0</y1>
+					<y2>0.5</y2>
+				</texture>
+				<w>25</w>
+				<h>20</h>
+			</layer>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<offset>37</offset>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<offset>-82</offset>
+				</transformation>
+			</transformations>
+		</layer>
+
+		<layer>
+			<name>pos</name>
+			<type>switch</type>
+			<layer>
+				<condition>
+					<equals>
+						<property>instrumentation/radar/display-controls/pos</property>
+						<value>1</value>
+					</equals>
+				</condition>
+				<name>pos on</name>
+				<emissive>true</emissive>
+				<texture>
+					<path>Aircraft/KC135/Instruments/Textures/auto-throttle-arm.rgb</path>
+					<x1>0.0</x1>
+					<x2>1.0</x2>
+					<y1>0.5</y1>
+					<y2>1.0</y2>
+				</texture>
+				<w>25</w>
+				<h>20</h>
+			</layer>
+			<layer>
+				<name>pos off</name>
+				<texture>
+					<path>Aircraft/KC135/Instruments/Textures/auto-throttle-arm.rgb</path>
+					<x1>0.0</x1>
+					<x2>1.0</x2>
+					<y1>0.0</y1>
+					<y2>0.5</y2>
+				</texture>
+				<w>25</w>
+				<h>20</h>
+			</layer>
+			<transformations>
+				<transformation>
+					<type>x-shift</type>
+					<offset>69</offset>
+				</transformation>
+				<transformation>
+					<type>y-shift</type>
+					<offset>-82</offset>
+				</transformation>
+			</transformations>
+		</layer>
+
+	</layers>
+
+	<actions>
+
+		<action>
+			<name>increase range </name>
+			<button>0</button>
+			<x>47</x>
+			<y>-58</y>
+			<w>25</w>
+			<h>75</h>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/radar/range-control</property>
+				<step type="int">1</step>
+				<min type="double">0</min>
+				<max type="double">7</max>
+			</binding>
+		</action>
+
+		<action>
+			<name>decrease range </name>
+			<button>0</button>
+			<x>2</x>
+			<y>-58</y>
+			<w>25</w>
+			<h>75</h>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/radar/range-control</property>
+				<step type="int">-1</step>
+				<min type="double">0</min>
+				<max type="double">7</max>
+			</binding>
+		</action>
+
+		<action>
+			<name>increase mode </name>
+			<button>0</button>
+			<x>-25</x>
+			<y>-58</y>
+			<w>25</w>
+			<h>75</h>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/radar/mode-control</property>
+				<step type="int">1</step>
+				<min type="double">0</min>
+				<max type="double">3</max>
+			</binding>
+		</action>
+
+		<action>
+			<name>centre display (CTR)</name>
+			<button>0</button>
+			<x>-50</x>
+			<y>-50</y>
+			<w>25</w>
+			<h>50</h>
+			<binding>
+				<command>property-assign</command>
+				<property>/instrumentation/radar/display-controls/centre</property>
+				<value type="bool">true</value>
+			</binding>
+			<mod-up>
+				<binding>
+					<command>property-assign</command>
+					<property>/instrumentation/radar/display-controls/centre</property>
+					<value type="bool">false</value>
+				</binding>
+			</mod-up>
+		</action>
+
+		<action>
+			<name>decrease mode  </name>
+			<button>0</button>
+			<x>-75</x>
+			<y>-58</y>
+			<w>25</w>
+			<h>75</h>
+			<binding>
+				<command>property-adjust</command>
+				<property>/instrumentation/radar/mode-control</property>
+				<step type="int">-1</step>
+				<min type="double">0</min>
+				<max type="double">3</max>
+			</binding>
+		</action>
+
+		<action>
+			<name>set display WX</name>
+			<button>0</button>
+			<x>-115</x>
+			<y>-115</y>
+			<w>25</w>
+			<h>40</h>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/radar/display-controls/WX</property>
+			</binding>
+		</action>
+
+		<action>
+			<name>set display data</name>
+			<button>0</button>
+			<x>27</x>
+			<y>-115</y>
+			<w>25</w>
+			<h>40</h>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/radar/display-controls/data</property>
+			</binding>
+		</action>
+
+		<action>
+			<name>set pos data</name>
+			<button>0</button>
+			<x>59</x>
+			<y>-115</y>
+			<w>25</w>
+			<h>40</h>
+			<binding>
+				<command>property-toggle</command>
+				<property>/instrumentation/radar/display-controls/pos</property>
+			</binding>
+		</action>
+
+	</actions>
+</PropertyList>
